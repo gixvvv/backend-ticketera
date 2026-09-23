@@ -1,0 +1,43 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: auth-api
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/auth_db?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+    username: root
+    password: ${DB_PASSWORD:root}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.MySQLDialect
+
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          # Spring Security descarga automáticamente las llaves públicas (JWKS)
+          # de Cognito desde esta URL para validar la firma de cada token.
+          issuer-uri: https://cognito-idp.${aws.region}.amazonaws.com/${aws.user-pool-id}
+
+# Credenciales/config de Cognito. NO subir valores reales a git;
+# se sobreescriben con variables de entorno en despliegue.
+aws:
+  region: ${AWS_REGION:us-east-1}
+  user-pool-id: ${AWS_USER_POOL_ID:TU_USER_POOL_ID}
+  client-id: ${AWS_CLIENT_ID:TU_APP_CLIENT_ID}
+  # Solo necesario si el App Client tiene "client secret" habilitado
+  client-secret: ${AWS_CLIENT_SECRET:}
+
+logging:
+  level:
+    org.springframework.security: DEBUG
+    com.duoc.authapi: DEBUG
