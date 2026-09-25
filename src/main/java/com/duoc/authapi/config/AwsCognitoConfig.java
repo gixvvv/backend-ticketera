@@ -8,16 +8,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-/**
- * Configura el cliente del SDK de AWS para hablar con Cognito
- * (SignUp, ConfirmSignUp, InitiateAuth) y expone los IDs del
- * User Pool / App Client que necesitan los services.
- *
- * Las credenciales de AWS (access key / secret key) NO se hardcodean:
- * se resuelven vía DefaultAWSCredentialsProviderChain, es decir,
- * variables de entorno AWS_ACCESS_KEY_ID / AWS_SECRET_ACCESS_KEY,
- * o el perfil configurado en ~/.aws/credentials.
- */
+
 @Configuration
 @Getter
 public class AwsCognitoConfig {

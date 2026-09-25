@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Data
 @Builder
@@ -18,4 +19,7 @@ public class UsuarioResponse {
     private String nombre;
     private boolean emailConfirmado;
     private LocalDateTime fechaRegistro;
+
+    // Roles obtenidos desde cognito:groups del JWT
+    private List<String> roles;
 }

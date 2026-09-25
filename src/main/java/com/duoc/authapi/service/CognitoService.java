@@ -15,12 +15,7 @@ import java.util.Base64;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * Encapsula toda la interacción con Amazon Cognito:
- * - signUp        -> crea el usuario en el User Pool (queda "UNCONFIRMED")
- * - confirmSignUp -> confirma el usuario con el código enviado por email
- * - login         -> autentica y devuelve los tokens (access/id/refresh)
- */
+
 @Service
 @RequiredArgsConstructor
 public class CognitoService {
